@@ -1,7 +1,11 @@
-import Dashboard from "./features/admin/Dashboard";
+import Login from "./features/login";
 
 function App() {
-  return <Dashboard />;
+  return (
+    <div className="bg-slate-100">
+      <Login />
+    </div>
+  );
 }
 
 export default App;
