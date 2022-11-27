@@ -1,9 +1,12 @@
-import Login from "./features/login";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./AppRoutes";
 
 function App() {
   return (
     <div className="bg-slate-100">
-      <Login />
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
     </div>
   );
 }
