@@ -13,7 +13,7 @@ interface User {
 
 interface Auth {
   user: User | null;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
 }
 
 const useAuth = create<Auth>((set) => ({
