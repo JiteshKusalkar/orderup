@@ -1,0 +1,6 @@
+{
+  "login.form.email.label": "Email",
+  "login.form.password.label": "Password",
+  "dashboard.tenantManager.addTenant.buttonLabel": "Add a tenant",
+  "dashboard.tenantManager.addTenant.headline": "Tenant Manager"
+}

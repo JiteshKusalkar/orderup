@@ -3,11 +3,13 @@ import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import useTranslate from "../../hooks/useTranslate";
 import useAuth from "../../store/auth";
 import useLoginForm, { LoginFormData } from "./useLoginForm";
 
 export default function Login() {
   const navigate = useNavigate();
+  const t = useTranslate();
   const setUser = useAuth((state) => state.setUser);
   const user = useAuth((state) => state.user);
   const {
@@ -43,7 +45,7 @@ export default function Login() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Input
-            label="Email"
+            label={t("login.form.email.label")}
             type="email"
             id="email"
             required
@@ -51,7 +53,7 @@ export default function Login() {
             {...register("email")}
           />
           <Input
-            label="Password"
+            label={t("login.form.password.label")}
             type="password"
             id="password"
             required
@@ -59,7 +61,7 @@ export default function Login() {
             {...register("password")}
           />
           <div className="mt-6">
-            <Button type="submit">Login</Button>
+            <Button className="w-full" type="submit">Login</Button>
           </div>
         </form>
       </div>
