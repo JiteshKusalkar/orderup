@@ -3,5 +3,5 @@
 }
 
 .defaultButton {
-  @apply text-black;
+  @apply text-current;
 }

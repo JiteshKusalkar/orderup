@@ -1,0 +1,15 @@
+.table {
+  @apply flex flex-col items-stretch border-collapse h-auto;
+}
+
+.rowGroup {
+  @apply flex flex-col items-stretch flex-[1_0_auto];
+}
+
+.rowHead {
+  @apply inline-flex flex-[1_0_auto] bg-[#dfe2f1] rounded-md mb-3 shadow-lg;
+}
+
+.row {
+  @apply inline-flex flex-[1_0_auto] bg-white rounded-md mb-1 transition-shadow duration-200 shadow-sm hover:shadow-md;
+}
