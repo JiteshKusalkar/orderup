@@ -1,25 +1,21 @@
 import { useMemo } from "react";
 import { CellProps, Column } from "react-table";
+import { Tenant } from "../../api/tenant";
 import Table from "../../components/Table";
 import useTranslate from "../../hooks/useTranslate";
 import styles from "./tenant-list.module.css";
 
-interface Tenant {
-  id: string;
-  name: string;
-  config: Record<string, string>;
-}
-
 interface TenantListProps {
   tenants: Tenant[];
+  onRowClick: (tenant: Tenant) => void;
 }
 
-function TenantList({ tenants }: TenantListProps) {
+function TenantList({ tenants, onRowClick }: TenantListProps) {
   const t = useTranslate();
   const columns: Array<Column<Tenant>> = useMemo(
     () => [
-      {
-        accessor: "id",
+      /* {
+        accessor: "config",
         Header(): JSX.Element {
           return <span className={styles.serialNumber}>Sr No</span>;
         },
@@ -29,21 +25,30 @@ function TenantList({ tenants }: TenantListProps) {
           );
         },
         maxWidth: 100,
-      },
+      }, */
       {
         Header: "Tenant",
         accessor: "name",
       },
       {
         Header: "",
-        accessor: "config",
-        Cell(): JSX.Element {
-          return <span>Edit</span>;
+        accessor: "id",
+        Cell(props: CellProps<Tenant>): JSX.Element {
+          return (
+            <div
+              className="cursor-pointer"
+              onClick={() => {
+                onRowClick(props.row.original);
+              }}
+            >
+              Edit
+            </div>
+          );
         },
         maxWidth: 100,
       },
     ],
-    []
+    [onRowClick]
   );
 
   return tenants?.length > 0 ? (

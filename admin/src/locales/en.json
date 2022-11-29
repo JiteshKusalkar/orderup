@@ -4,5 +4,8 @@
   "dashboard.tenantManager.addTenant.buttonLabel": "Add a tenant",
   "dashboard.tenantManager.addTenant.headline": "Tenant Manager",
   "dashboard.tenantManager.addTenant.imageAlt": "No data found image",
-  "dashboard.tenantManager.addTenant.noDataMessage": "No data available! Add tenants to see a list."
+  "dashboard.tenantManager.addTenant.noDataMessage": "No data available! Add tenants to see a list.",
+  "dashboard.tenantManager.modal.header.add": "Add tenant",
+  "dashboard.tenantManager.modal.header.edit": "Edit tenant",
+  "dashboard.tenantManager.modal.form.name": "Tenant Name"
 }
