@@ -3,7 +3,7 @@ import Inventory from "../../assets/icons/Inventory";
 
 const size = 16;
 
-function Sidebar() {
+const Sidebar = () => {
   return (
     <section>
       <h3 className="text-lg text-purple-300 my-4">Settings</h3>
@@ -19,6 +19,6 @@ function Sidebar() {
       </ul>
     </section>
   );
-}
+};
 
 export default Sidebar;

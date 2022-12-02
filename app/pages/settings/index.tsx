@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { NextPageWithLayout } from "../../utils/nestLayout";
 import Sidebar from "../../web/features/settings/Sidebar";
 
-export function SettingsLayout(page: ReactElement) {
+export const SettingsLayout = (page: ReactElement) => {
   return (
     <div className="min-h-screen flex">
       <div className="w-[300px] bg-purple-700 text-white p-4">
@@ -11,7 +11,7 @@ export function SettingsLayout(page: ReactElement) {
       <div className="w-[calc(100vw_-_300px)]">{page}</div>
     </div>
   );
-}
+};
 
 const Settings: NextPageWithLayout = () => {
   return (

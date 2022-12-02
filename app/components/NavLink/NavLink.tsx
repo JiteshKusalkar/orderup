@@ -8,11 +8,11 @@ type NavLinkProps = PropsWithChildren<LinkProps> & {
   className?: string;
 };
 
-function NavLink({
+const NavLink = ({
   children,
   activeClassName = "active",
   ...props
-}: NavLinkProps) {
+}: NavLinkProps) => {
   const { asPath } = useRouter();
   const child = Children.only(children) as React.ReactElement;
   const childClassName = child.props.className || "";
@@ -30,6 +30,6 @@ function NavLink({
       })}
     </Link>
   );
-}
+};
 
 export default NavLink;
