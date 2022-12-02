@@ -44,7 +44,8 @@ function TenantManager() {
   );
 
   const handleSubmit: SubmitHandler<TenantFormData> = useCallback((data) => {
-    console.log("data submitted", data);
+    // api call for creating tenant
+    // data clean up
     methods.reset({ name: "" });
     setIsEditMode(false);
     setIsOpen(false);
