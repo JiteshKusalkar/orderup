@@ -1,0 +1,6 @@
+{
+  "settings.inventory.headline": "Inventory Manager",
+  "settings.inventory.addInventory.buttonLabel": "Add Inventory",
+  "settings.inventory.addInventory.imageAlt": "No data found image",
+  "settings.inventory.addInventory.noDataMessage": "No data available! Add inventory to see a list."
+}

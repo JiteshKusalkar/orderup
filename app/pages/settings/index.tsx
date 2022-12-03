@@ -1,3 +1,4 @@
+import { NextPageContext } from "next";
 import { ReactElement } from "react";
 import { NextPageWithLayout } from "../../utils/nestLayout";
 import Sidebar from "../../web/features/settings/Sidebar";
@@ -12,6 +13,15 @@ export const SettingsLayout = (page: ReactElement) => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  return {
+    redirect: {
+      destination: "/settings/inventory",
+      permanent: true,
+    },
+  };
+}
 
 const Settings: NextPageWithLayout = () => {
   return (
