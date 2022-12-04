@@ -17,8 +17,6 @@ const NavLink = ({
   const child = Children.only(children) as React.ReactElement;
   const childClassName = child.props.className || "";
 
-  console.log("asPath", asPath, "props.href", props.href, "props.as", props.as);
-
   const isActive = asPath === props.href || asPath === props.as;
 
   const className = cx(childClassName, { [activeClassName]: isActive });

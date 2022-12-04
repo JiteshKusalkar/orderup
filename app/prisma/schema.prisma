@@ -1,0 +1,123 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum Currency {
+  USD
+  EUR
+}
+
+enum Role {
+  MANAGER
+  CUSTOMER
+  GUEST
+}
+
+// Models
+model Tenant {
+  id          String        @id @default(uuid())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  name        String        @unique
+  website     String        @unique
+  logoURL     String        @unique
+  menuItem    MenuItem[]
+  user        User[]
+  diningTable DiningTable[]
+  category    Category[]
+}
+
+model Category {
+  id          String     @id @default(uuid())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  name        String
+  description String?
+  menuItem    MenuItem[]
+  tenant      Tenant     @relation(fields: [tenantId], references: [id])
+  tenantId    String     @default(uuid())
+  user        User       @relation(fields: [createdBy], references: [id])
+  createdBy   String     @default(uuid())
+}
+
+model DiningTable {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  order     Order[]
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  tenantId  String   @default(uuid())
+  user      User     @relation(fields: [createdBy], references: [id])
+  createdBy String   @default(uuid())
+}
+
+model MenuItem {
+  id          String            @id @default(uuid())
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  name        String
+  description String
+  price       String
+  currency    Currency          @default(EUR)
+  category    Category          @relation(fields: [categoryId], references: [id])
+  categoryId  String            @default(uuid())
+  tenant      Tenant            @relation(fields: [tenantId], references: [id])
+  tenantId    String            @default(uuid())
+  orders      MenuItemToOrder[]
+  user        User              @relation(fields: [createdBy], references: [id])
+  createdBy   String            @default(uuid())
+
+  @@index([tenantId, categoryId])
+}
+
+model Order {
+  id            String            @id @default(uuid())
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  totalAmount   Int
+  hasPaid       Boolean
+  diningTable   DiningTable       @relation(fields: [diningTableId], references: [id])
+  diningTableId String            @default(uuid())
+  menuItems     MenuItemToOrder[]
+
+  @@index([diningTableId])
+}
+
+model MenuItemToOrder {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  menuItem     MenuItem @relation(fields: [menuItemId], references: [id])
+  menuItemId   String   @default(uuid())
+  order        Order    @relation(fields: [orderId], references: [id])
+  orderId      String   @default(uuid())
+  itemQuantity Int
+
+  @@index([orderId])
+}
+
+model User {
+  id           String        @id @default(uuid())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  firstName    String
+  middleName   String?
+  lastName     String
+  email        String        @unique
+  tenant       Tenant        @relation(fields: [tenantId], references: [id])
+  tenantId     String        @default(uuid())
+  role         Role          @default(MANAGER)
+  categories   Category[]
+  diningTables DiningTable[]
+  menuItems    MenuItem[]
+}
