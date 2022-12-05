@@ -1,9 +1,7 @@
-import { PrismaClient } from '@prisma/client';
 import { categories } from '../data/category';
 import { tenant } from '../data/tenant';
 import { manager } from '../data/user';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/prisma';
 
 async function main() {
   const createdTenant = await prisma.tenant.create({

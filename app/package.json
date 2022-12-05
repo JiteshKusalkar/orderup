@@ -6,8 +6,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/server": "^4.2.2",
+    "@as-integrations/next": "^1.2.0",
     "@prisma/client": "4.7.1",
     "classnames": "^2.3.2",
+    "graphql": "^16.6.0",
     "next": "latest",
     "prisma": "^4.7.1",
     "react": "18.2.0",
